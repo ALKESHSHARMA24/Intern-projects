@@ -1,0 +1,32 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+html,body{
+    background-color: linear-gradient(to top left, #753682 0%, #bf2e34 100%);;
+    height: 100%;
+    width: 100%;
+
+}
+.home{
+    /* background-color: #a21668; */
+    display: flex;
+
+    position: relative;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    padding: 1rem;
+}
+.mainWindow{
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    flex: 1;
+
+}
+.header{
+    align-items: flex-start;
+
+}
