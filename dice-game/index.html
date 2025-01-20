@@ -8,17 +8,60 @@
     </head>
     <body>
 
+        <script defer src="backend.js"></script>
         <div class="home">
             <div class="header">
-                <img src="game-title-logo.png" alt="game-title-logo">
+                <img src="logo.jpg" alt="game-title-logo" height="auto"
+                    width="100rem">
             </div>
 
             <div class="mainWindow">
-                <section class="player1">BOX 1</section>
-                <section class="player2">BOX 2</section>
-                <button class="newGame">NEW GAME</button>
-                <button class="rollDice">ROLL</button>
-                <button class="holdButton">END</button>
+
+                <div class="playerWindows">
+
+                    <div class="player1-div">
+
+                        <section class="player1">
+                            <h1>Player 1 </h1>
+                        </section>
+                        <h2 class="display-total">
+                            0
+                        </h2>
+                        <div class="player-current-div">
+
+                            <p>CURRENT</p>
+                            <p id="player1-current-val">VALUE</p>
+                        </div>
+
+                    </div>
+
+                    <div class="player2-div">
+                        <section class="player2">
+                            <h1>Player2</h1>
+                        </section>
+
+                        <h2 class="display-total">
+                            0
+                        </h2>
+
+                        <div class="player-current-div">
+
+                            <p>CURRENT</p>
+                            <p id="player2-current-val">VALUE</p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="buttonDiv">
+                    <button class="btn" id="new-game"> 🔄 NEW GAME</button>
+
+                    <img src="./dice-images/dice-1.png" id="dice-img"
+                        height="100px">
+                    <button class="btn" id="roll-dice">ROLL</button>
+                    <button class="btn" id="hold-turn">HOLD</button>
+                </div>
             </div>
         </div>
 
