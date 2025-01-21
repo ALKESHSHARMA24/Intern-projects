@@ -113,10 +113,10 @@ html,body{
     
 }
 .player1-div{
-    background-color:rgb(223, 93, 93);
+    background:rgb(223, 93, 93);
 }
 .player2-div{
-    background-color: rgb(78, 28, 100);
+    background: rgb(78, 28, 100);
 }
 .player-current-div{
     display: flex;
