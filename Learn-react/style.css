@@ -1,0 +1,67 @@
+#image-logo{
+    width: 100px;
+}
+.logo-container{
+    display: flex;
+}
+.heading{
+    display: flex;
+    justify-content: space-between;
+    border: 3px solid rgb(163, 138, 138);
+    border-radius: 10px;
+}
+/* .nav-bar{
+    display: flex;
+
+} */
+.list{
+    display: flex;
+    
+}
+.list > li{
+    list-style: none;
+    padding: 10px;
+    margin: 10px;
+}
+.cards>#Restro-image{
+    height: 200px;
+    width: 100%;
+}
+.logo-container{
+    margin-left: 15px;
+}
+.cards-container{
+    width: 20rem;
+    padding: 5px;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 10px;
+    /* margin-block-start: 10px; */
+    padding: 5px;
+}
+
+
+.cards{ 
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: rgb(28, 111, 111);
+    width: 250px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.resto-heading{
+    margin-inline-start: 35px;
+}
+.cards:hover{
+    border: 3px solid black;
+}
+#Restro-image{
+    width: 100%;
+}
+
+.restro-cards{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    /* margin: 10px; */
+}
