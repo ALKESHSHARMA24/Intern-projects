@@ -1,0 +1,51 @@
+/* Container that holds both sidebar and content */
+.app-container {
+    display: flex;
+    position: relative;
+    height: 100vh;
+  }
+  
+  /* Button to toggle sidebar */
+  .toggle-btn {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    z-index: 1000; /* Ensure button is always on top */
+  }
+  
+  /* Sidebar */
+  .sidebar {
+    position: fixed;
+    left: -250px; /* Initially hidden */
+    top: 0;
+    width: 250px;
+    height: 100%;
+    background-color: #333;
+    color: white;
+    transition: left 0.3s ease;
+    padding: 20px;
+    z-index: 999; /* Sidebar appears above content */
+  }
+  
+  /* When sidebar is visible */
+  .sidebar.visible {
+    left: 0;
+  }
+  
+  /* Content area */
+  .content {
+    margin-left: 0;
+    padding: 20px;
+    flex-grow: 1;
+    transition: margin-left 0.3s ease;
+  }
+  
+  /* When sidebar is visible, shift content */
+  .content.shifted {
+    margin-left: 250px;
+  }

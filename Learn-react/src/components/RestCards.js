@@ -1,22 +1,29 @@
-import resobj from "../utils/restoData";
+import res from "express/lib/response";
+import { URL } from "../utils/constant";
+import { IMAGE_URL } from "../utils/constant";
 
 const RestroCards = (props) => {
   const { resData } = props;
-  const { cloudinaryImageId, name, avgRating, cuisines } =
-    resData?.card.card.info;
-  const { deliveryTime } = resData?.card.card.info.sla;
+  console.log(resData);
+  const { name, avgRating, cuisines } = resData?.info;
+  const cloudinaryImageid = resData?.info.cloudinaryImageId;
+  const { deliveryTime } = resData?.info.sla;
+
   return (
     <div className="cards-container">
       <div className="cards">
         <img
-          src={`https://dineout-media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto/v1705570676/${cloudinaryImageId}`}
-          alt="restorant Image"
+          src={`${IMAGE_URL}${cloudinaryImageid}`}
+          alt="restaurant Image"
           id="Restro-image"
         />
-        <h3 className="resto-heading">{name}</h3>
-        <h4 className="resto-heading">{cuisines.join(",")}</h4>
-        <h4 className="resto-heading"> {avgRating}</h4>
-        <h4 className="resto-heading">{deliveryTime}</h4>
+
+        <div className="header">
+          <h3 className="resto-heading">{name}</h3>
+          <h4 className="resto-heading">{cuisines.join(", ")}</h4>
+          <h4 className="resto-heading">Rating: {avgRating}</h4>
+          <h4 className="resto-heading">Delivery Time: {deliveryTime} mins</h4>
+        </div>
       </div>
     </div>
   );

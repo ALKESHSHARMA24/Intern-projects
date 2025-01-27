@@ -4,6 +4,9 @@
 .logo-container{
     display: flex;
 }
+/* body{
+    background-color: black;
+} */
 .heading{
     display: flex;
     justify-content: space-between;
@@ -23,10 +26,12 @@
     padding: 10px;
     margin: 10px;
 }
+
 .cards>#Restro-image{
     height: 200px;
     width: 100%;
 }
+
 .logo-container{
     margin-left: 15px;
 }
@@ -35,25 +40,33 @@
     padding: 5px;
     height: auto;
     display: flex;
+    /* align-items: center; */
+    justify-content: center;
     flex-wrap: wrap;
     margin: 10px;
     /* margin-block-start: 10px; */
     padding: 5px;
+    
 }
+
 
 
 .cards{ 
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     color: rgb(28, 111, 111);
-    width: 250px;
+    width: inherit;
+    /* background-color: rgb(211, 33, 33); */
     display: flex;
     flex-wrap: wrap;
 }
 .resto-heading{
     margin-inline-start: 35px;
+    width: inherit;
+    text-overflow:ellipsis;
+    text-wrap: wrap;
 }
 .cards:hover{
-    border: 3px solid black;
+    border: 3px solid rgb(10, 2, 2);
 }
 #Restro-image{
     width: 100%;
@@ -64,4 +77,27 @@
     flex-direction: row;
     flex-wrap: wrap;
     /* margin: 10px; */
+}
+.header{
+    height: auto;
+    padding: 10px;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    text-wrap: wrap;
+    overflow-wrap: break-word;
+    /* text-overflow: clip; */
+}
+
+.header h4 {
+    word-wrap: break-word; /* Allows long words to be broken and wrap to the next line */
+    overflow-wrap: break-word; /* Ensures compatibility with different browsers */
+    white-space:normal; /* Allows text to wrap normally */
+    overflow: hidden; /* Hides any overflowing text */
+    display: inline-block; /* Ensures the text wraps within the block */
+    width: 95%; /* Ensures the text takes the full width of the container */
 }
