@@ -1,3 +1,5 @@
+import { Link } from "react-router";
+
 const Header = function (props) {
   return (
     <div className="heading">
@@ -13,10 +15,18 @@ const Header = function (props) {
       <div className="nav-bar">
         <div className="nav-bar-container">
           <ul className="list">
-            <li>Home</li>
-            <li>About Us</li>
-            <li>Contact Us</li>
-            <li>Cart</li>
+            <li>
+              <Link to={{pathname:"/"}}> Home</Link>
+            </li>
+            <li>
+              <Link to={{ pathname: "/AboutUs" }}>About Us</Link>
+            </li>
+            <li>
+              <Link to={{ pathname: "/ContactUs" }}>Contact Us</Link>
+            </li>
+            <li>
+              <Link>Cart</Link>
+            </li>
           </ul>
         </div>
       </div>

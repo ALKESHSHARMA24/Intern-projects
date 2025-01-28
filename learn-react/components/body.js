@@ -10,21 +10,14 @@ import RestroCards from "./restCards";
 
 const Body = () => {
   const [Restaurant, SetRestaurant] = useState([]);
+  const [FliterRestaurant, setFliterRestaurant] = useState([]);
   const [searchInput, setSearchInput] = useState("");
 
   //   const TEMPURL = `https://www.swiggy.com/dapi/restaurants/search/v3?lat=23.030244474584375&lng=72.53045917390587&str=${tempvar}&trackingId=dad7d274-5d9c-06fc-e3a1-24901e037d47&submitAction=ENTER&queryUniqueId=e6085f04-f924-c1ad-8e82-ced0a11eacb6`;
 
   useEffect(function () {
-    // const NewRestaurant = resobj.filter(function (Element) {
-    //   return Element.card.card.info.avgRating > 3;
-    // });
-    // SetRestaurant(NewRestaurant);
     serachData(searchInput);
   }, []);
-
-  //   useEffect(() => {
-  //     fetchData(searchInput);
-  //   }, [Restaurant, searchInput]);
 
   async function fetchData() {
     try {
@@ -36,9 +29,11 @@ const Body = () => {
         data.data.cards[1].groupedCard.cardGroupMap.RESTAURANT.cards[1].card
           .card.restaurants
       );
-      //   SetRestaurant(
-      //     data.data.cards[1].groupedCard.cardGroupMap.RESTAURANT.cards
-      //   );
+      setFliterRestaurant(
+        data.data.cards[1].groupedCard.cardGroupMap.RESTAURANT.cards[1].card
+          .card.restaurants
+        // data.data.cards[1].groupedCard.cardGroupMap.RESTAURANT.cards
+      );
     } catch (e) {
       console.log(e.message);
     }
@@ -56,7 +51,7 @@ const Body = () => {
       //     data.data.cards[1].groupedCard.cardGroupMap.RESTAURANT.cards[1].card
       //       .card.restaurants
       //   );
-      SetRestaurant(
+      setFliterRestaurant(
         data.data.cards[1].groupedCard.cardGroupMap.RESTAURANT.cards
       );
     } catch (e) {
@@ -79,7 +74,7 @@ const Body = () => {
       <button onClick={() => serachData(searchInput)}>Search</button>
 
       <div className="restro-cards">
-        {Restaurant.map(function (Element) {
+        {FliterRestaurant.map(function (Element) {
           return (
             <RestroCards key={Element.card.card.info.id} resData={Element} />
           );
