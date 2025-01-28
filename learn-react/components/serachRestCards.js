@@ -2,17 +2,12 @@ import { URL } from "../utils/constants";
 import { IMAGE_URL } from "../utils/constants";
 import React from "react";
 
-const RestroCards = (props) => {
-  //   console.log("wrokign");
-    const { resData } = props;
-    const { name, avgRating, cuisines } = resData?.info;
-    const cloudinaryImageid = resData?.info.cloudinaryImageId;
-    const { deliveryTime } = resData?.info.sla;
-
-//   const { name, avgRating, cuisines } = resData?.card.card.info;
-//   const cloudinaryImageid = resData?.card.card.info.cloudinaryImageId;
-//   const { deliveryTime } = resData?.card.card.info.sla;
-//   card.card.info;
+const SearchRestroCards = (props) => {
+  const { resData } = props;
+  //   console.log("serachRestro working: ", resData);
+  const { name, avgRating, cuisines } = resData?.card.card.info;
+  const cloudinaryImageid = resData?.card.card.info.cloudinaryImageId;
+  const { deliveryTime } = resData?.card.card.info.sla;
 
   return (
     <div className="cards-container">
@@ -29,12 +24,9 @@ const RestroCards = (props) => {
           <h4 className="resto-heading">Rating: {avgRating}</h4>
           <h4 className="resto-heading">Delivery Time: {deliveryTime} mins</h4>
         </div>
-        
       </div>
     </div>
   );
 };
 
-
-
-export default RestroCards;
+export default SearchRestroCards;

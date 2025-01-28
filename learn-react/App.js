@@ -7,6 +7,7 @@ import ContactUs from "./components/ContactUs";
 import Error from "./components/Error";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router";
 import path from "path-browserify";
+import { Shimmar } from "./components/ShimmerUI";
 
 const AppLayout = () => {
   return (
