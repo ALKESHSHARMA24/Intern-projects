@@ -8,6 +8,8 @@ import Error from "./components/Error";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router";
 import path from "path-browserify";
 import { Shimmar } from "./components/ShimmerUI";
+import RestroMenu from "./components/restroMenu";
+import BasicButtons from "./components/AddImage";
 
 const AppLayout = () => {
   return (
@@ -40,6 +42,10 @@ const appRouter = createBrowserRouter([
       {
         path: "/Home",
         element: <AppLayout />,
+      },
+      {
+        path: "/Restaurant/:resId",
+        element: <RestroMenu />,
       },
     ],
     errorElement: <Error />, //if any kind of error occures then error component will be displayed

@@ -4,6 +4,7 @@ import { URL } from "../utils/constants";
 import RestroCards from "./restCards";
 import SearchRestroCards from "./serachRestCards";
 import { Shimmar } from "./ShimmerUI";
+import { Link, matchPath } from "react-router";
 
 const Body = () => {
   const [Restaurant, SetRestaurant] = useState(null);
@@ -78,14 +79,24 @@ const Body = () => {
           <Shimmar />
         ) : isInitialLoad ? (
           Restaurant.map((Element) => (
-            <RestroCards key={Element.info.id} resData={Element} />
+            //always put the key into the parenet jsx element
+            <Link
+              key={Element.info.id}
+              to={{ pathname: "/Restaurant/" + Element.info.id }}
+            >
+              <RestroCards resData={Element} />
+            </Link>
           ))
         ) : (
           FliterRestaurant.map((Elements) => (
-            <SearchRestroCards
+            <Link
               key={Elements.card.card.info.id}
-              resData={Elements}
-            />
+              to={{
+                pathname: "/Restaurant/" + Elements.card.card.info.id,
+              }}
+            >
+              <SearchRestroCards resData={Elements} />
+            </Link>
           ))
         )}
       </div>
