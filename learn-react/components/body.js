@@ -1,37 +1,23 @@
 import { useEffect, useState } from "react";
 import React from "react";
 import { URL } from "../utils/constants";
-import RestroCards from "./restCards";
+import RestroCards, { PromotedRestro } from "./restCards";
 import SearchRestroCards from "./serachRestCards";
 import { Shimmar } from "./ShimmerUI";
 import { Link, matchPath } from "react-router";
-
+import useRestroFetch from "../utils/useRestroFetch";
+import { PromotedRestro } from "./restCards";
 const Body = () => {
-  const [Restaurant, SetRestaurant] = useState(null);
+  const { Restaurant, isLoading } = useRestroFetch(); // Get restaurant data from custom hook
   const [FliterRestaurant, setFliterRestaurant] = useState([]);
   const [searchInput, setSearchInput] = useState("");
-  const [isInitialLoad, setIsInitialLoad] = useState(false);
 
-  useEffect(() => {
-    fetchData();
-  }, []); // Empty dependency array to run only once on mount
+  //craeted a new component which should have the promoted label in the restaurant component(New Enhance Component)
+  const PromotedRestroCards = PromotedRestro(RestroCards);
+  // Function to search restaurants
+  const searchData = async () => {
+    if (!searchInput.trim()) return; // Prevent empty searches
 
-  async function fetchData() {
-    try {
-      const response = await fetch(URL);
-      const data = await response.json();
-      SetRestaurant(
-        data.data.cards[1].groupedCard.cardGroupMap.RESTAURANT.cards[1].card
-          .card.restaurants
-      );
-      setIsInitialLoad(true);
-    } catch (e) {
-      console.log("in error");
-      console.log(e.message);
-    }
-  }
-
-  async function searchData(searchInput) {
     try {
       const response = await fetch(
         `https://www.swiggy.com/dapi/restaurants/search/v3?lat=23.030244474584375&lng=72.53045917390587&str=${searchInput}&trackingId=dad7d274-5d9c-06fc-e3a1-24901e037d47&submitAction=ENTER&queryUniqueId=e6085f04-f924-c1ad-8e82-ced0a11eacb6`
@@ -54,48 +40,48 @@ const Body = () => {
         );
       }
 
-      setIsInitialLoad(false);
+      // setIsInitialLoad(false);
     } catch (e) {
       console.log(e.message);
     }
-  }
+  };
 
-  if (Restaurant === null) return <Shimmar />;
-
-  console.log(Restaurant);
-  //   <Shimmar/>
-  //USING THE TERNARY OPERATOR
   return (
-    <div className="body">
-      <input
-        id="inputRest"
-        type="text"
-        required
-        onChange={(e) => setSearchInput(e.target.value)}
-      />
-      <button onClick={() => searchData(searchInput)}>Search</button>
-      <div className="restro-cards">
-        {Restaurant === null ? (
+    <div className="flex flex-col m-5 flex-wrap">
+      <div className="flex flex-row ">
+        <input
+          type="text"
+          className="border-2 rounded-lg"
+          placeholder="Search Restaurants..."
+          value={searchInput}
+          onChange={(e) => setSearchInput(e.target.value)}
+        />
+        <button className=" ml-4 pl-4 " onClick={searchData}>
+          Search
+        </button>
+      </div>
+
+      <div className="w-full h-auto cards-container mt-5 flex flex-row flex-wrap ">
+        {isLoading ? (
           <Shimmar />
-        ) : isInitialLoad ? (
-          Restaurant.map((Element) => (
-            //always put the key into the parenet jsx element
+        ) : FliterRestaurant.length > 0 ? (
+          FliterRestaurant.map((element) => (
             <Link
-              key={Element.info.id}
-              to={{ pathname: "/Restaurant/" + Element.info.id }}
+              key={element.card.card.info.id}
+              to={`/Restaurant/${element.card.card.info.id}`}
             >
-              <RestroCards resData={Element} />
+              <SearchRestroCards resData={element} />
             </Link>
           ))
         ) : (
-          FliterRestaurant.map((Elements) => (
-            <Link
-              key={Elements.card.card.info.id}
-              to={{
-                pathname: "/Restaurant/" + Elements.card.card.info.id,
-              }}
-            >
-              <SearchRestroCards resData={Elements} />
+          Restaurant.map((element) => (
+            //High ordre component example used
+            <Link key={element.info.id} to={`/Restaurant/${element.info.id}`}>
+              {element.info.promoted ? (
+                <PromotedRestroCards resData={element} />
+              ) : (
+                <RestroCards resData={element} />
+              )}
             </Link>
           ))
         )}

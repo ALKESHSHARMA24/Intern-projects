@@ -10,6 +10,10 @@ import path from "path-browserify";
 import { Shimmar } from "./components/ShimmerUI";
 import RestroMenu from "./components/restroMenu";
 import BasicButtons from "./components/AddImage";
+import { lazy, Suspense } from "react";
+// import LazyComponent from "./components/LazyComponent";
+
+const LazyComponent = lazy(() => import("./components/LazyComponent.js"));
 
 const AppLayout = () => {
   return (
@@ -44,11 +48,19 @@ const appRouter = createBrowserRouter([
         element: <AppLayout />,
       },
       {
+        path: "/LazyComponent",
+        element: (
+          <Suspense fallback={<h1>Waiting for LazyComponent</h1>}>
+            <LazyComponent />
+          </Suspense>
+        ),
+      },
+      {
         path: "/Restaurant/:resId",
         element: <RestroMenu />,
       },
     ],
-    errorElement: <Error />, //if any kind of error occures then error component will be displayed
+    // errorElement: <Error />, //if any kind of error occures then error component will be displayed
   },
 ]);
 

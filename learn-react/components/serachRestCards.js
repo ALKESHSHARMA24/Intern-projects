@@ -4,7 +4,7 @@ import React from "react";
 
 const SearchRestroCards = (props) => {
   const { resData } = props;
-  //   console.log("serachRestro working: ", resData);
+    console.log("serachRestro working: ", resData);
   const { name, avgRating, cuisines } = resData?.card.card.info;
   const cloudinaryImageid = resData?.card.card.info.cloudinaryImageId;
   const { deliveryTime } = resData?.card.card.info.sla;
