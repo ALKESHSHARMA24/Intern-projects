@@ -39,9 +39,8 @@ const RestroMenu = () => {
   }
 
   if (resMenu === null) return <Shimmar />;
-  XMLDocument;
   return (
-    <div className="flex w-11/12 justify-center content-center items-center">
+    <div className="flex h-full w-full justify-center items-center">
       <div className=" h-full  w-full m-10 p-10 border-amber-800 border-2 flex flex-col justify-center content-center items-center">
         <p className="text-black bg-blue-300 rounded-lg w-1/3 p-4 justify-center flex">
           Restaurant Name:- {ResName.data.cards[0].card.card.text}
@@ -59,7 +58,8 @@ const RestroMenu = () => {
             />
           ))}
       </div>
-    // </div>
+      //{" "}
+    </div>
   );
 };
 

@@ -6,15 +6,18 @@ const CategoryItems = (props) => {
   // console.log(Isopen);
   // console.log(index);
   return (
-    <div className="bg-stone-300 w-full justify-between flex  flex-row rounded-lg mt-4 p-4 ">
-      <div>
-        <span>Type :- {item.card.info.name}</span>
+    <div className="bg-stone-300 w-full justify-between  flex gap-2  flex-row rounded-lg mt-4 p-4 ">
+      <div className="flex w-full flex-col flex-wrap gap-2">
+        <p>Type :- {item.card.info.name}</p>
         <p> Dish:- {item.card.info.description}</p>
-        <span>Item Price:- {item.card.info.price / 100}</span>
+        <p>Item Price:- {item.card.info.price / 100}</p>
       </div>
 
-      <div className="w-1/3 h-1/2 ">
-        <img className="w-full rounded-lg" src={`${RESTAURANT_MENU_IMAGE}${item.card.info.imageId}`} />
+      <div className="w-1/3 h-1/2">
+        <img
+          className="w-full h-full rounded-lg"
+          src={`${RESTAURANT_MENU_IMAGE}${item.card.info.imageId}`}
+        />
       </div>
     </div>
   );
