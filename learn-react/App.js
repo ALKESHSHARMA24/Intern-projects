@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
 import Header from "./components/header";
 import Body from "./components/body";
@@ -11,17 +11,31 @@ import { Shimmar } from "./components/ShimmerUI";
 import RestroMenu from "./components/restroMenu";
 import BasicButtons from "./components/AddImage";
 import { lazy, Suspense } from "react";
+import { UserContext } from "./utils/UserContext.js";
 // import LazyComponent from "./components/LazyComponent";
+import { UserContext } from "./utils/UserContext.js";
+import { useContext } from "react";
 
+//Lazy Loading component which will only be used when it required
 const LazyComponent = lazy(() => import("./components/LazyComponent.js"));
 
 const AppLayout = () => {
+  const { UserName } = useContext(UserContext);
+  const [LoginUser, setLoginUser] = useState(UserName);
+  // console.log(LoginUser);
+
+  useEffect(function () {
+    setLoginUser("alkesh");
+  }, []);
   return (
-    <div className="app">
-      <Header />
-      <Outlet />
-      {/* this will be <Outlet /> replaced by the child route of AppLayout based on the child routes will be used*/}
-    </div>
+    // BINDED THE CONTEXT API OBJECT VALUE TO THE USE STATE HOOKS SO THAT THE USERNAME VALUE  OF THE CONTEXT CAN BE CHANGE USING THE SETSTATE AND THEN APPLAYOUT WILL BE RE RENDERS
+    <UserContext.Provider value={{ UserName: LoginUser, setLoginUser }}>
+      <div className="app">
+        <Header />
+        <Outlet />
+        {/* this will be <Outlet /> replaced by the child route of AppLayout based on the child routes will be used*/}
+      </div>
+    </UserContext.Provider>
   );
 };
 
@@ -60,7 +74,7 @@ const appRouter = createBrowserRouter([
         element: <RestroMenu />,
       },
     ],
-    // errorElement: <Error />, //if any kind of error occures then error component will be displayed
+    errorElement: <Error />, //if any kind of error occures then error component will be displayed
   },
 ]);
 

@@ -7,10 +7,19 @@ import { Shimmar } from "./ShimmerUI";
 import { Link, matchPath } from "react-router";
 import useRestroFetch from "../utils/useRestroFetch";
 import { PromotedRestro } from "./restCards";
+import { useContext } from "react";
+import { UserContext } from "../utils/UserContext";
+
+// const { UserName } = useContext(UserContext);
 const Body = () => {
   const { Restaurant, isLoading } = useRestroFetch(); // Get restaurant data from custom hook
   const [FliterRestaurant, setFliterRestaurant] = useState([]);
   const [searchInput, setSearchInput] = useState("");
+
+  const { UserName } = useContext(UserContext);
+
+
+
 
   //craeted a new component which should have the promoted label in the restaurant component(New Enhance Component)
   const PromotedRestroCards = PromotedRestro(RestroCards);
